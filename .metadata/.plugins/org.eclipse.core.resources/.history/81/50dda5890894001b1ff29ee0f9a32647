@@ -1,0 +1,11 @@
+import java.util.HashMap;
+
+public class NewCustomer extends Readjsonfile{
+		
+	public void newCustomer(String name, Integer points) {
+		
+		customerList.put(name, points);
+		
+	}
+
+}

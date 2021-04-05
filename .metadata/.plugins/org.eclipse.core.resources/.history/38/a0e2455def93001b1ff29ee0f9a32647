@@ -1,0 +1,80 @@
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import java.sql.Timestamp;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
+
+
+public class Readjsonfile {
+
+ public static void main(String[] args) {
+  JSONParser jsonP = new JSONParser();
+  
+  try(FileReader reader = new FileReader("src/main/resources/events.json")){
+	  
+	  
+   //Read JSON File
+   Object obj = jsonP.parse(reader);
+   JSONObject eventsjsonobj = (JSONObject)obj;
+   JSONArray eventList = (JSONArray) eventsjsonobj.get("events");
+//   System.out.println(eventList);
+   
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+
+   //Iterate over events array
+   
+   
+   
+   for(int i=0;i<eventList.size();i++) {
+	   JSONObject eventObj = (JSONObject)eventList.get(i);
+	   
+	   String action = (String) eventObj.get("action");
+	   String name = (String) eventObj.get("name");
+	   String date_time = (String) eventObj.get("timestamp");
+	   OffsetDateTime time = OffsetDateTime.parse(date_time, formatter);
+	   
+	   
+	   System.out.println("Event no "+ (i+1) + " is:   ");
+	   System.out.println("Action: " + action);
+	   System.out.println("Name: " + name);
+	   System.out.println("Timestamp: " + date_time);
+	   System.out.println("Time is : "+ Timestamp.from(time.toInstant()));
+	   
+	   if(eventObj.get("amount") != null) {
+		   	double amount = (Double) eventObj.get("amount");
+	   		System.out.println("Amount: " + amount);
+	   }
+	   System.out.println("--------------");
+	   
+   }
+   
+  }
+  catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+ }
+/* private static void parseEmpObj(JSONObject events) {
+  JSONObject eventObj = (JSONObject) events.get("events");
+  //get events action, name. timestamp, amount
+  String action = (String) eventObj.get("action");
+  String name = (String) eventObj.get("name");
+  String date_time = (String) eventObj.get("timestamp");
+  float amount = (Float) eventObj.get("amount");
+  System.out.println("First Name: " + action);
+  System.out.println("Last Name: " + name);
+  System.out.println("Website: " + date_time);
+  System.out.println("Amount" + amount);
+  
+ }*/
+}

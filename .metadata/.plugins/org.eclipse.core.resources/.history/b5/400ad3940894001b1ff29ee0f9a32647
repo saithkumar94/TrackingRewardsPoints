@@ -1,0 +1,13 @@
+import java.util.Map;
+
+public class RewardPoints extends Readjsonfile {
+	
+	public void printRewards()  {
+		
+		for( Map.Entry<String, Integer> entry : customerList.entrySet() ){
+		    System.out.println( entry.getKey() + ": " + entry.getValue() + " points");
+		
+	}
+	}
+
+}

@@ -1,0 +1,13 @@
+import java.util.HashMap;
+
+public class NewCustomer extends Readjsonfile{
+	
+	final HashMap<String, Integer> customerList = new HashMap<String, Integer>();
+	
+	public void newCustomer(String name, Integer points) {
+		System.out.println("New Customer method");
+		customerList.put(name, points);
+		
+	}
+
+}

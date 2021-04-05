@@ -1,0 +1,13 @@
+import java.util.HashMap;
+
+public class NewCustomer {
+	
+	public HashMap<String, Integer> customerList = new HashMap<String, Integer>();
+	
+	public void newCustomer(String name, Integer points) {
+		
+		customerList.put(name, points);
+		
+	}
+
+}

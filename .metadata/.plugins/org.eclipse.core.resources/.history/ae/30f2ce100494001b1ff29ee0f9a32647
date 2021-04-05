@@ -1,0 +1,18 @@
+import java.util.*;
+import java.sql.Timestamp;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class RewardPointsCalculator extends NewCustomer{
+	
+	public void calculatepoints(String name, String date_time, Double amount) {
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+		OffsetDateTime time = OffsetDateTime.parse(date_time, formatter);
+		System.out.println(Timestamp.from(time.toInstant()));
+		
+		
+		
+	}
+
+}
